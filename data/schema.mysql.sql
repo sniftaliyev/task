@@ -3,6 +3,16 @@
 CREATE DATABASE IF NOT EXISTS `task` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `task`;
 
+-- Дамп структуры для таблица task.task_type
+CREATE TABLE IF NOT EXISTS `task_type` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `position` int(10) NOT NULL,
+  `is_default` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Экспортируемые данные не выделены.
 
 -- Дамп структуры для таблица task.task
 CREATE TABLE IF NOT EXISTS `task` (
@@ -12,18 +22,6 @@ CREATE TABLE IF NOT EXISTS `task` (
   PRIMARY KEY (`id`),
   KEY `FK_task_task_type` (`task_type_id`),
   CONSTRAINT `FK_task_task_type` FOREIGN KEY (`task_type_id`) REFERENCES `task_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Экспортируемые данные не выделены.
-
-
--- Дамп структуры для таблица task.task_type
-CREATE TABLE IF NOT EXISTS `task_type` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `position` int(10) NOT NULL,
-  `is_default` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Экспортируемые данные не выделены.
